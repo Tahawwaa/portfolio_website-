@@ -8,11 +8,13 @@ export default function ProjectDialog({ project, onClose }) {
   useEffect(() => {
     const dialog = dialogRef.current
     const previousOverflow = document.body.style.overflow
+    const previousFocus = document.activeElement
     dialog.showModal()
     document.body.style.overflow = 'hidden'
     return () => {
       dialog.close()
       document.body.style.overflow = previousOverflow
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus({ preventScroll: true })
     }
   }, [])
 

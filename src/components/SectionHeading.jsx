@@ -1,11 +1,14 @@
+import AnimatedText from './motion/AnimatedText.jsx'
+import Reveal from './motion/Reveal.jsx'
+
 export default function SectionHeading({ number, label, title, accent, children }) {
   return (
     <div className="section-heading">
       <div>
-        <p className="eyebrow mono"><span>{number} /</span> {label}</p>
-        <h2>{title}<span className="muted-heading">{accent}</span></h2>
+        <Reveal as="p" className="eyebrow mono" distance={18}><span>{number} /</span> {label}</Reveal>
+        <AnimatedText text={title} accent={accent} />
       </div>
-      {children && <div className="section-heading-aside">{children}</div>}
+      {children && <Reveal className="section-heading-aside" direction="right" delay={0.15}>{children}</Reveal>}
     </div>
   )
 }
